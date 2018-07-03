@@ -31,7 +31,7 @@ module.exports = function(app, passport) {
         if (! user) {
           return res.send({ success : false, message : 'signinfailed' ,info: info});
         }
-        return res.send({ success : true, message : 'signup succeeded' });
+        return res.send({ success : true,user: {username: user.username}, message : 'signup succeeded' });
       })(req, res, next);
     });
 

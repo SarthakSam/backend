@@ -6,10 +6,16 @@ bodyParser = require('body-parser'),
 exphbs = require('express-handlebars'),
 env = require('dotenv').load();
 
+const route = require('./app/routes/api');
+app.use('/api',route.route);
+
+
+
+
 let models = require("./app/models");
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 
 app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
 app.use(passport.initialize());
@@ -35,12 +41,12 @@ models.sequelize.sync().then(function() {
 app.get('/', function(req, res) {
     res.send('Welcome to Passport with Sequelize');
 });
- 
 
-app.listen(4000, function(err) {
- 
+
+app.listen(3000, function(err) {
+
     if (!err)
-        console.log("Site is live at 4000");
+        console.log("Site is live at 3000");
     else {
         console.log("server not listening")
         console.log(err)

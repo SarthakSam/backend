@@ -66,7 +66,9 @@ res.setHeader('Access-Control-Allow-Credentials', true);
 next();
 });
 
-
+route.get('/',(req,res) => {
+  res.send(DIR+'photo-1530607251432.jpg');
+})
 
 route.post('/',upload.single('photo'), function (req, res) {
   // console.log(req.body);

@@ -31,11 +31,24 @@ module.exports = function(app, passport) {
         if (! user) {
           return res.send({ success : false, message : 'signinfailed' ,info: info});
         }
+        // console.log(req.session);
         return res.send({ success : true,user: {username: user.username}, message : 'signup succeeded' });
       })(req, res, next);
     });
 
-    // app.post('/signup', passport.authenticate('local-signup', {
+  
+
+
+    function isLoggedIn(req, res, next) {
+      console.log(req.isAuthenticated())
+        if (req.isAuthenticated())
+            return next();
+        res.redirect('/signin');
+    }
+
+}
+
+  // app.post('/signup', passport.authenticate('local-signup', {
     //         successRedirect: '/dashboard',
     //         failureRedirect: '/signup'
     //     }
@@ -45,12 +58,3 @@ module.exports = function(app, passport) {
 //         failureRedirect: '/signin'
 //     }
 // ));
-
-
-    function isLoggedIn(req, res, next) {
-        if (req.isAuthenticated())
-            return next();
-        res.redirect('/signin');
-    }
-
-}

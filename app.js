@@ -4,18 +4,21 @@ passport   = require('passport'),
 session    = require('express-session'),
 bodyParser = require('body-parser'),
 exphbs = require('express-handlebars'),
-env = require('dotenv').load();
+env = require('dotenv').load(),
+path = require('path');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 const route = require('./app/routes/api');
 app.use('/api',route.route);
-
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 
 
 let models = require("./app/models");
+// console.log(models.user,models.listing)
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
 app.use(passport.initialize());

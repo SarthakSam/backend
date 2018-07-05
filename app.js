@@ -20,7 +20,8 @@ let models = require("./app/models");
 // console.log(models.user,models.listing)
 
 
-app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
+
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true ,cookie: {maxAge: 300000}})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 

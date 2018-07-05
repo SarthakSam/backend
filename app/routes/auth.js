@@ -2,59 +2,110 @@ var authController = require('../controllers/authcontroller.js');
 
 module.exports = function(app, passport) {
 
-    app.get('/signup', authController.signup);
-    app.get('/signin', authController.signin);
-    app.get('/dashboard',isLoggedIn, authController.dashboard);
-    app.get('/logout',authController.logout);
-
-    app.post('/signup', function(req, res, next) {
-      passport.authenticate('local-signup', function(err, user, info) {
-        if (err) {
-          return next(err); // will generate a 500 error
-        }
-        // Generate a JSON response reflecting signup
-        if (! user) {
-          if(info)
-          return res.send({ success : false, message : 'signupfailed' ,info: info});
-          return res.send({ success : false, message : 'signupfailed' });
-        }
-        return res.send({ success : true, message : 'signup succeeded' });
-      })(req, res, next);
-    });
-
-    app.post('/signin', function(req, res, next) {
-      passport.authenticate('local-signin', function(err, user, info) {
-        if (err) {
-          return next(err); // will generate a 500 error
-        }
-        // Generate a JSON response reflecting signup
-        if (! user) {
-          return res.send({ success : false, message : 'signinfailed' ,info: info});
-        }
-        // console.log(req.session);
-        return res.send({ success : true,user: {username: user.username}, message : 'signup succeeded' });
-      })(req, res, next);
-    });
-
-  
-
-
-    function isLoggedIn(req, res, next) {
-      console.log(req.isAuthenticated())
-        if (req.isAuthenticated())
-            return next();
-        res.redirect('/signin');
+  app.get('/signup', authController.signup);
+  app.get('/signin',authController.signin );
+  app.get('/dashboard',isLoggedIn, authController.dashboard);
+  app.get('/logout',authController.logout);
+  app.get('/getUser',(req,res) => {
+    // console.log("getUser",req._passport.session);
+    // console.log("user",req.user);
+    if(req.user){
+    let user ={
+      statusCode: 200,
+      id: req.user.id,
+      firstname: req.user.firstname,
+      lastname: req.user.lastname,
+      username: req.user.username,
+      about: req.user.about,
+      college: req.user.college,
+      address: req.user.address,
+      mobileNo: req.user.mobileNo,
+      email: req.user.email
     }
+    res.send(user);
+    }
+    else{
+      res.send({statusCode: 400});
+    }
+  })
+
+  // app.post('/signup', function(req, res, next) {
+  //   passport.authenticate('local-signup', function(err, user, info) {
+  //     if (err) {
+  //       return next(err); // will generate a 500 error
+  //     }
+  //     // Generate a JSON response reflecting signup
+  //     if (! user) {
+  //       if(info)
+  //       return res.send({ success : false, message : 'signupfailed' ,info: info});
+  //       return res.send({ success : false, message : 'signupfailed' });
+  //     }
+  //     req.logIn(user, function(err) {
+  //       if (err) { return next(err); }
+  //       return res.send({ success : true,user: {username: user.username}, message : 'signup succeeded' })
+  //     });
+  //   })(req, res, next);
+  // });
+  //
+
+
+
+  // app.post('/signin',  passport.authenticate('local-signin'),function(req, res) {
+  //   // If this function gets called, authentication was successful.
+  //   // `req.user` contains the authenticated user.
+  //   console.log(req);
+  //
+  //   res.send(req.user.username);
+  // })
+
+//   app.post('/signin', function(req, res, next) {
+//     console.log(req.body)
+//   passport.authenticate('local-signin', function(err, user, info) {
+//     if (err) { return next(err); }
+//     if (!user) { return res.send({ success : false, message : 'signinfailed' ,info: info}); }
+//     req.logIn(user, function(err) {
+//       if (err) { return next(err); }
+//       return res.send({ success : true,user: {username: user.username}, message : 'signup succeeded' })
+//     });
+//   })(req, res, next);
+// });
+//
+
+  app.post('/signup', passport.authenticate('local-signup', {
+          successRedirect: '/',
+          failureRedirect: '/signup'
+      }
+  ));
+
+      app.post('/signin', passport.authenticate('local-signin', {
+          successRedirect: '/',
+          failureRedirect: '/signin'
+      }
+  ));
+
+
+  function isLoggedIn(req, res, next) {
+    console.log(req.isAuthenticated())
+    if (req.isAuthenticated())
+    return next();
+    res.redirect('/signin');
+  }
 
 }
-
-  // app.post('/signup', passport.authenticate('local-signup', {
-    //         successRedirect: '/dashboard',
-    //         failureRedirect: '/signup'
-    //     }
-    // ));
-//     app.post('/signin', passport.authenticate('local-signin', {
-//         successRedirect: '/dashboard',
-//         failureRedirect: '/signin'
+// app.post('/signin', function(req, res, next) {
+//   passport.authenticate('local-signin', function(err, user, info) {
+//     req.login()
+//     console.log(req.user);
+//     if (err) {
+//       return next(err); // will generate a 500 error
 //     }
-// ));
+//     // Generate a JSON response reflecting signup
+//     if (! user) {
+//       return res.send({ success : false, message : 'signinfailed' ,info: info});
+//     }
+//     // console.log(req.sessionID);
+//     // console.log(req._passport.session);
+//
+//     return res.send({ success : true,user: {username: user.username}, message : 'signup succeeded' });
+//   })(req, res, next);
+// });

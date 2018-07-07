@@ -74,17 +74,19 @@ route.post('/',upload.single('photo'), function (req, res) {
   // console.log(req.body);
   if (!req.file) {
       console.log("No file received");
-      return res.send({
+      let obj = {
         success: false
-      });
+      }
+      return res.send(obj);
 
     } else {
       console.log('file received');
       console.log(req.file);
-      return res.send({
+      let obj = {
         success: true,
-        // name: file.fieldname + '-' + Date.now() + path.extname(file.originalname)
-      })
+        info: req.file.filename
+      }
+      return res.send(obj);
     }
 });
 

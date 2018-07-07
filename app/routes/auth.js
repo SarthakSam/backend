@@ -1,4 +1,6 @@
 var authController = require('../controllers/authcontroller.js');
+let User = require('../models').user;
+
 
 module.exports = function(app, passport) {
 
@@ -29,6 +31,17 @@ module.exports = function(app, passport) {
     }
   })
 
+    app.get('/getUser/:id',(req,res) => {
+      console.log("sending user with id:",req.params["id"])
+          User.findOne({ where: { id : req.params["id"] } }).then(user => {
+                if(user){
+                    res.send(user);
+                }
+                else{
+                    res.send({message: "no user with this id"});
+                }
+            })
+    })
   // app.post('/signup', function(req, res, next) {
   //   passport.authenticate('local-signup', function(err, user, info) {
   //     if (err) {

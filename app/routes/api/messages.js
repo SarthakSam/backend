@@ -13,7 +13,7 @@ route.get('/',(req,res) => {
 // get messages for particular user
 route.get('/:userid',(req,res) => {
     // console.log(req.params["userid"]);
-    Message.findOne({ where: { recieverid : req.params["userid"] } }).then(messages => {
+    Message.findAll({ where: { recieverid : req.params["userid"] } }).then(messages => {
         if(messages){
             res.send(messages);
         }
@@ -25,16 +25,15 @@ route.get('/:userid',(req,res) => {
 
 route.post('/',(req,res) => {
      console.log("hello",req.body)
-    if(isNaN(req.body.senderid)){
-        res.status(403).send({ error: "Sender not valid"})
-      }
       if(isNaN(req.body.recieverid)){
         res.status(403).send({ error: "No such reciever"})
-      }    
+      }
+
             Message.create({
-                senderid: parseInt(req.body.senderid),
-                bookid: parseInt(req.body.bookid),
-                recieverid: parseInt(req.body.recieverid)
+                sendername: req.body.sendername,
+                bookname: req.body.bookname,
+                recieverid: parseInt(req.body.recieverid),
+                textcontent: req.body.textcontent
             }).then((message) => { res.status(201).send(message); })
             .catch((error) => { res.status(501).send({ error: "Error adding product" }) })
 })

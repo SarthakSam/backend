@@ -3,16 +3,532 @@
 
 <head>
     <title></title>
+  <style media="screen">
+  Colors
+/*Fonts*/
+body {
+  background-color: #ffbba8;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/*Reset Heading*/
+h2,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Start Style*/
+.wrapper {
+  max-width: 775px;
+  min-height: 90vh;
+  background: #ddd;
+  margin: 30px auto;
+  display: flex;
+}
+.wrapper .shapes {
+  flex: 1;
+  background: #fa6161;
+  border: 1px solid #fa6161;
+  display: flex;
+  flex-direction: column;
+}
+.wrapper .shapes .row {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #31cb40;
+  box-shadow: 15px 0 0 0 #fdcb03, 30px 0 0 0 #fffefe;
+  margin: 10px 0 30px 8px;
+}
+.wrapper .shapes .column {
+  width: 100%;
+  height: 85%;
+  display: flex;
+  justify-content: space-around;
+}
+.wrapper .shapes .column__1, .wrapper .shapes .column__2, .wrapper .shapes .column__3 {
+  flex-basis: 30%;
+}
+.wrapper .shapes .column__1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.wrapper .shapes .column__1 .polygen {
+  width: 25px;
+  height: 15px;
+  background: #5486ff;
+  position: relative;
+  margin-bottom: 10px;
+}
+.wrapper .shapes .column__1 .polygen:before {
+  content: "";
+  position: absolute;
+  top: -11px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 13px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 11px solid #5486ff;
+}
+.wrapper .shapes .column__1 .polygen:after {
+  content: "";
+  position: absolute;
+  bottom: -11px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 13px solid transparent;
+  border-top: 11px solid #5486ff;
+}
+.wrapper .shapes .column__1 .circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fffefe;
+  margin-bottom: 0px;
+}
+.wrapper .shapes .column__1 .traingle {
+  border: 20px solid #2f2f2f;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  margin-bottom: 10px;
+  margin-top: -15px;
+}
+.wrapper .shapes .column__1 .italicline {
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-radius: 50%;
+  border: 5px solid #5486ff;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(-105deg);
+  position: relative;
+  margin-bottom: 15px;
+}
+.wrapper .shapes .column__1 .italicline:before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-radius: 50%;
+  border: 5px solid #5486ff;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  transform: rotate(-6deg);
+}
+.wrapper .shapes .column__1 .italicline:after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-radius: 50%;
+  border: 5px solid #5486ff;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  transform: rotate(-80deg);
+  position: absolute;
+  top: -17px;
+  left: -14px;
+}
+.wrapper .shapes .column__1 .sm-circle {
+  border: 15px solid #fffefe;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.wrapper .shapes .column__1 .sm-circle:before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fa6161;
+}
+.wrapper .shapes .column__1 .xs-circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fffefe;
+  box-shadow: 15px 0.5px 0 #5486ff, 0.5px -15px 0 #5486ff, 15px 15px 0 #fdcb03, 15px -15px 0 #fdcb03, 0.5px 15px 0 #2f2f2f, -15px 0.5px 0 #2f2f2f, -15px -15px 0 #fffefe, -15px 15px 0 #fdcb03;
+  animation: rotateCircle 2s ease alternate infinite;
+}
+.wrapper .shapes .column__2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.wrapper .shapes .column__2 .line {
+  width: 30px;
+  height: 4px;
+  background: #fdcb03;
+  border-radius: 5px;
+  transform: rotate(45deg);
+}
+.wrapper .shapes .column__2 .square {
+  width: 40px;
+  height: 40px;
+  background: #fdcb03;
+}
+.wrapper .shapes .column__2 .half-circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: transparent;
+  border: 5px solid #fffefe;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(-45deg);
+  animation: rotateCircle 2s ease alternate infinite;
+}
+.wrapper .shapes .column__2 .sm-square {
+  width: 18px;
+  height: 18px;
+  background: #5486ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 30px;
+}
+.wrapper .shapes .column__2 .sm-square:before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fa6161;
+}
+.wrapper .shapes .column__2 .rectangle {
+  width: 33px;
+  height: 20px;
+  background: #fdcb03;
+  position: relative;
+}
+.wrapper .shapes .column__2 .rectangle:before {
+  content: "";
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  border: 16.5px solid #fdcb03;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.wrapper .shapes .column__2 .star {
+  width: 20px;
+  height: 10px;
+  background: #2f2f2f;
+  position: relative;
+  margin-bottom: -14px;
+}
+.wrapper .shapes .column__2 .star:before {
+  content: "";
+  position: absolute;
+  top: -11px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-radius: 15px 0 0 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 11px solid #2f2f2f;
+}
+.wrapper .shapes .column__2 .star:after {
+  content: "";
+  position: absolute;
+  bottom: -11px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 11px solid #2f2f2f;
+}
+.wrapper .shapes .column__3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+@media (max-width: 600px) {
+  .wrapper .shapes .column__3 {
+    margin-right: 10px;
+  }
+}
+.wrapper .shapes .column__3 .six-circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2f2f2f;
+  /*box-shadow: 20px 0 0 $whiteColor,
+                        0 20px 0 $whiteColor,
+                        20px 20px 0 $yellowColor,
+                        0 40px 0 $blueColor,
+                        20px 40px 0 $whiteColor;*/
+  margin-top: 11px;
+  margin-right: 10px;
+  animation: scaleCircle 2s ease alternate infinite;
+}
+.wrapper .shapes .column__3 .pencil {
+  width: 25px;
+  height: 270px;
+  background: #4064bf;
+  box-shadow: 25px 0 0 #03a9f4;
+  position: relative;
+  margin-right: 10px;
+}
+.wrapper .shapes .column__3 .pencil:before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 50px;
+  height: 0;
+  border-bottom: 20px solid #fffefe;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+.wrapper .shapes .column__3 .pencil:after {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: 10px;
+  width: 30px;
+  border-bottom: 30px solid #5486ff;
+  border-left: 15px solid transparent;
+  border-right: 14px solid transparent;
+}
+.wrapper .form-content {
+  background: #f0f0f0;
+  border: 1px solid #f0f0f0;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  z-index: 2;
+}
+.wrapper .form-content__header {
+  width: 290px;
+  text-align: center;
+}
+.wrapper .form-content__header h2 {
+  font: 600 45px "Nunito", sans-serif;
+  color: #fa6161;
+  position: relative;
+}
+.wrapper .form-content__header h2:before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #fa6161;
+  border-radius: 50%;
+  top: 14px;
+  left: 42px;
+  /*box-shadow: 15px 0 0 -2px $mainColor,
+                        30px 0 0 -2px $mainColor,
+                        0 12px 0 0px $mainColor,
+                        0 24px 0 0px $mainColor,
+                        15px 24px 0 0px $mainColor,
+                        30px 24px 0 -2px $mainColor,
+                        30px 12px 0 -2px $mainColor,
+                        15px 12px 0 -2px $mainColor;*/
+  animation: sizeCircle 1.7s ease alternate infinite;
+}
+.wrapper .form-content form {
+  display: flex;
+  flex-direction: column;
+}
+.wrapper .form-content form .form-row {
+  margin-bottom: 15px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.wrapper .form-content form .form-row input {
+  width: 290px;
+  height: 30px;
+  border-radius: 5px;
+  outline: 0;
+  border: 0;
+  text-indent: 25px;
+  position: relative;
+}
+.wrapper .form-content form .form-row input::placeholder {
+  transform: translateX(3%);
+  letter-spacing: 1px;
+  font: 100 12px "Poppins", sans-serif;
+  transition: all 0.5s ease-in-out;
+}
+.wrapper .form-content form .form-row input:focus {
+  color: #fa6161;
+}
+.wrapper .form-content form .form-row input:focus ~ .icon {
+  transform: translateX(-100%);
+}
+.wrapper .form-content form .form-row label {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.wrapper .form-content form .form-row .icon {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 7px;
+  background: transparent;
+  border-radius: 5px 0 0 5px;
+  color: #fa6161;
+  transition: all 0.5s ease-in-out;
+}
+.wrapper .form-content form .form-row .btn {
+  width: 290px;
+  font: 100 15px "Nunito", sans-serif;
+  padding: 10px 20px;
+  border: 0;
+  outline: 0;
+  background: #fa6161;
+  color: #fffefe;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.wrapper .form-content form .form-row .btn:hover {
+  background-color: rgba(250, 97, 97, 0.9);
+}
+.wrapper .form-content form .form-row p {
+  font: 200 15px "Poppins", sans-serif;
+}
+.wrapper .form-content form .form-row p a {
+  text-decoration: none;
+  color: rgba(250, 97, 97, 0.5);
+}
+.wrapper .form-content form .form-row p a:hover {
+  color: #fa6161;
+}
+.wrapper .form-content__footer {
+  text-align: center;
+}
+.wrapper .form-content__footer p {
+  font: 200 15px "Poppins", sans-serif;
+}
+.wrapper .form-content__footer p a {
+  text-decoration: none;
+  color: #fa6161;
+}
+.wrapper .form-content__footer p a:hover {
+  color: rgba(250, 97, 97, 0.5);
+}
+
+@keyframes sizeCircle {
+  0% {
+    box-shadow: 15px 0 0 -2px #fa6161, 30px 0 0 -2px #fa6161, 0 12px 0 0px #fa6161, 0 24px 0 0px #fa6161, 15px 24px 0 0px #fa6161, 30px 24px 0 -2px #fa6161, 30px 12px 0 -2px #fa6161, 15px 12px 0 -2px #fa6161;
+  }
+  100% {
+    box-shadow: 15px 0 0 0 #fa6161, 30px 0 0 0 #fa6161, 0 12px 0 -2px #fa6161, 0 24px 0 -2px #fa6161, 15px 24px 0 -2px #fa6161, 30px 24px 0 0 #fa6161, 30px 12px 0 0 #fa6161, 15px 12px 0 0 #fa6161;
+  }
+}
+@keyframes scaleCircle {
+  from {
+    background: #2f2f2f;
+    box-shadow: 20px 0 0 #fffefe, 0 20px 0 #fffefe, 20px 20px 0 #fdcb03, 0 40px 0 #5486ff, 20px 40px 0 #fffefe;
+  }
+  to {
+    background: #fffefe;
+    box-shadow: 20px 0 0 #fdcb03, 0 20px 0 #5486ff, 20px 20px 0 #fffefe, 0 40px 0 #fdcb03, 20px 40px 0 #5486ff;
+  }
+}
+@keyframes rotateCircle {
+  0% {
+    transform: rotate(-45deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+  </style>
 </head>
 
 <body>
-    <form id="signin" name="signin" method="post" action="signin">
-        <label for="email">Email Address</label>
-        <input class="text" name="email" type="text" />
-        <label for="password">Password</label>
-        <input name="password" type="password" />
-        <input class="btn" type="submit" value="Sign In" />
-    </form>
+  <div class="wrapper">
+    <div class="shapes">
+      <div class="row"></div>
+      <div class="column">
+        <div class="column__1">
+          <div class="polygen"></div>
+          <div class="circle"></div>
+          <div class="traingle"></div>
+          <div class="italicline"></div>
+          <div class="sm-circle"></div>
+          <div class="xs-circle"></div>
+        </div>
+        <div class="column__2">
+          <div class="line"></div>
+          <div class="square"></div>
+          <div class="half-circle"></div>
+          <div class="sm-square"></div>
+          <div class="rectangle"></div>
+          <div class="star"></div>
+        </div>
+        <div class="column__3">
+          <div class="six-circle"></div>
+          <div class="pencil"></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-content">
+      <div class="form-content__header">
+        <h2>BOOKAPP</h2>
+      </div>
+      <form  action="/signin" method="POST">
+        <div class="form-row">
+
+          <input type="email" name="email" placeholder="E-mail" required>
+        </div>
+        <div class="form-row">
+          <input type="password" name="password" placeholder="Password" required>
+        </div>
+        <div class="form-row">
+          <button class="btn" > Sign In</button>
+        </div>
+        <div class="form-row">
+          <p>Don't have an account ? <a [routerLink]="['/signup']" >Create one</a></p>
+        </div>
+      </form>
+      <div class="form-content__footer">
+        <!-- <p><a href="#">Forget passowrd !</a></p> -->
+      </div>
+    </div>
+  </div>
+
 
 </body>
 

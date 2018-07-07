@@ -84,6 +84,37 @@ module.exports = function(app, passport) {
 // });
 //
 
+app.post('/profile',(req,res) => {
+  console.log("profile");
+  console.log(req.body);
+  User.findOne({ where: { id : req.body.id } }).then(user => {
+        if(user){
+          let newusername = req.body.username;
+          let newemail = req.body.email;
+          let newfirstname = req.body.firstname;
+          let newlastname = req.body.lastname;
+          let newabout = req.body.about;
+          let newmobileNo = req.body.mobileNo;
+          let newcollege = req.body.college;
+          let newaddress = req.body.address;
+          user.updateAttributes({
+            username: newusername,
+            email: newemail,
+            firstname: newfirstname,
+            lastname: newlastname,
+            about: newabout,
+            mobileNo: newmobileNo,
+            college: newcollege,
+            address: newaddress
+          });
+          res.redirect('/');
+        }
+        else{
+            res.redirect('/');
+        }
+    })
+});
+
   app.post('/signup', passport.authenticate('local-signup', {
           successRedirect: '/',
           failureRedirect: '/signup'

@@ -19,6 +19,7 @@ app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 let models = require("./app/models");
 // console.log(models.user,models.listing)
 
+app.use('/', express.static('public'));
 
 
 app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true ,cookie: {maxAge: 300000}})); // session secret
@@ -42,9 +43,9 @@ models.sequelize.sync().then(function() {
 });
 
 
-app.get('/', function(req, res) {
-    res.send('Welcome to Passport with Sequelize');
-});
+// app.get('/', function(req, res) {
+//     res.render('index');
+// });
 
 
 app.listen(3000, function(err) {

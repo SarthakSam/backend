@@ -46,7 +46,7 @@ route.get('/search/:name',(req,res)=>{
   // Book.findAll({ where: { bookname : req.params["name"] } }).then(book => {
   //     if(book){
   //         res.send(book);
-  //     }
+  //     }                        {$iLike: req.params["name"]}
   // });    { bookname: { $eq : req.params["name"] } }, authorname: { $eq : req.params["name"] }
   Book.findAll({ where: { $or: [ { bookname: req.params["name"] }, { authorname: req.params["name"] } ]  } }).then(book => {
       if(book){

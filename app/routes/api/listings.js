@@ -1,6 +1,56 @@
 const route = require('express').Router();
 let Book = require('../../models').listing;
 
+const multer = require('multer');
+const Sequelize = require('sequelize');
+
+const storage = multer.diskStorage({
+  destination: function(req,file,cb){
+    cb(null, './uploads/');
+  },
+  filename: function(req,file,cb){
+    cb(null,  new Date().toISOString() + file.originalname)
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+    //reject a file
+    if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/jpg'){
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+   fileFilter : fileFilter
+});
+// const fileFilter = (req, file, cb) => {
+//     //reject a file
+//     if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
+//         cb(null, true);
+//     } else {
+//         cb(null, false);
+//     }
+// };
+//
+// const upload = multer({
+//     storage: storage,
+//     limits: {
+//         fileSize: 1024 * 1024 * 5
+//     },
+//     fileFilter : fileFilter
+//
+// });
+//
+// const Op = Sequelize.Op;
+
+
+
 
 route.get('/',(req,res) => {
     console.log("get request to listings =>",Book );
@@ -60,33 +110,43 @@ route.get('/search/:name',(req,res)=>{
 })
 
 
-route.post('/',(req,res) => {
-     console.log("hello",req.body);
-    if(isNaN(req.body.price)){
-        res.status(403).send({ error: "Price not valid"})
-      }
-      if(isNaN(req.body.seller)){
-        res.status(403).send({ error: "No such seller"})
-      }
-      Book.findOne({ where: {seller: parseInt(req.body.seller),bookname: req.body.bookname, authorname: req.body.authorname, price: parseFloat(req.body.price),Condition:  parseInt(req.body.condition) } }).then(book => {
-        if(book){
-            console.log("item already present");
-            let newquan = book.quantity+1;
-            book.updateAttributes({quantity: newquan });
-            res.send({message: "Quantity increased by 1"});
+route.post('/', upload.single('bookimage'), (req, res) => {
+        // console.log(req.body);
+        // console.log("book")
+        // console.log(req.file)
+        let filepath;
+        if(req.file==undefined){
+          filepath='./uploads/no-image.jpg';
         }
         else{
-            Book.create({
-                seller: parseInt(req.body.seller),
-                bookname: req.body.bookname,
-                authorname: req.body.authorname,
-                price: parseFloat(req.body.price),
-                imageofitem: req.body.imageofitem,
-                Condition: parseInt(req.body.condition)
-            }).then((product) => { res.redirect('/') })
-            .catch((error) => { res.status(501).send({ error: "Error adding product" }) })
+          filepath=req.file.path;
         }
-    })
+        if(isNaN(req.body.price)){
+            res.status(403).send({ error: "Price not valid"})
+          }
+          if(isNaN(req.body.seller)){
+            res.status(403).send({ error: "No such seller"})
+          }
+          Book.findOne({ where: {seller: parseInt(req.body.seller),bookname: req.body.bookname, authorname: req.body.authorname, price: parseFloat(req.body.price),Condition:  parseInt(req.body.condition) } }).then(book => {
+            if(book){
+                console.log("item already present");
+                let newquan = book.quantity+1;
+                book.updateAttributes({quantity: newquan });
+                res.send({message: "Quantity increased by 1"});
+            }
+            else{
+                Book.create({
+                    seller: parseInt(req.body.seller),
+                    bookname: req.body.bookname,
+                    authorname: req.body.authorname,
+                    price: parseFloat(req.body.price),
+                    imageofitem: filepath,
+                    Condition: parseInt(req.body.condition)
+                }).then((product) => { res.send({ message: "Book added for sale " }) })
+                .catch((error) => { res.status(501).send({ message: "Error adding book" }) })
+            }
+        })
+
 })
 
 module.exports = { route}

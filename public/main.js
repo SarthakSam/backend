@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body {\n    background: #eee !important;\n  }\n  \n  .wrapper {\n    margin-top: 80px;\n    margin-bottom: 80px;\n  }\n  \n  .form-signin {\n    max-width: 380px;\n    padding: 15px 35px 45px;\n    margin: 0 auto;\n    background-color: #fff;\n    border: 1px solid rgba(0, 0, 0, 0.1);\n  }\n  \n  .form-signin .form-signin-heading,\n  .form-signin .checkbox {\n    margin-bottom: 30px;\n  }\n  \n  .form-signin .checkbox {\n    font-weight: normal;\n  }\n  \n  .form-signin .form-control {\n    position: relative;\n    font-size: 16px;\n    height: auto;\n    padding: 10px;\n    box-sizing: border-box;\n  }\n  \n  .form-signin .form-control:focus {\n    z-index: 2;\n  }\n  \n  .form-signin input[type=\"text\"] {\n    margin-bottom: -1px;\n    border-bottom-left-radius: 0;\n    border-bottom-right-radius: 0;\n  }\n  \n  .form-signin input[type=\"password\"] {\n    margin-bottom: 20px;\n    border-top-left-radius: 0;\n    border-top-right-radius: 0;\n  }\n  "
+module.exports = "body {\n    background: #eee !important;\n  }\n  \n  .wrapper {\n    margin-top: 80px;\n    margin-bottom: 80px;\n  }\n  \n  .form-signin {\n    max-width: 380px;\n    padding: 15px 35px 45px;\n    margin: 0 auto;\n    background-color: #fff;\n    border: 1px solid rgba(0, 0, 0, 0.1);\n  }\n  \n  .form-signin .form-signin-heading,\n  .form-signin .checkbox {\n    margin-bottom: 30px;\n  }\n  \n  .form-signin .checkbox {\n    font-weight: normal;\n  }\n  \n  .form-signin .form-control {\n    position: relative;\n    font-size: 16px;\n    height: auto;\n    padding: 10px;\n    box-sizing: border-box;\n  }\n  \n  .form-signin .form-control:focus {\n    z-index: 2;\n  }\n  \n  .form-signin input[type=\"text\"] {\n    margin-bottom: -1px;\n    border-bottom-left-radius: 0;\n    border-bottom-right-radius: 0;\n  }\n  \n  .form-signin input[type=\"password\"] {\n    margin-bottom: 20px;\n    border-top-left-radius: 0;\n    border-top-right-radius: 0;\n  }\n  \n  h1{\n    text-align: center;\n  }"
 
 /***/ }),
 
@@ -41,7 +41,7 @@ module.exports = "body {\n    background: #eee !important;\n  }\n  \n  .wrapper 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\n    <form class=\"form-signin\" action=\"/api/listings\" method=\"POST\">       \n      <h2 class=\"form-signin-heading\">Add a book for sale</h2>\n      <input type=\"number\" name=\"seller\" class=\"form-control\" placeholder=\"User Id\" value=\"{{userId}}\" readonly>\n      <input type=\"text\" class=\"form-control\" name=\"bookname\" placeholder=\"Book Name\" required=\"\" autofocus=\"\" />\n      <input type=\"text\" class=\"form-control\" name=\"authorname\" placeholder=\"Author Name\" required=\"\"/>      \n      <input type=\"number\" class=\"form-control\" name=\"price\" placeholder=\"Price\" required=\"\"/>\n      <input type=\"number\" class=\"form-control\" name=\"condition\" placeholder=\"Condition\" min=\"1\" max=\"4\" required=\"\"/>\n     \n      <div *ngIf= \"imageUploaded\">\n        <input type=\"text\"  class=\"form-control\"  name=\"imageofitem\" value=\"{{imageURL}}\" readonly />\n      </div>\n     \n      <div *ngIf= \"!imageUploaded\">\n        <input type=\"file\"  class=\"form-control\"  name=\"photo\" ng2FileSelect [uploader]=\"uploader\" />\n        <button type=\"button\" class=\"btn btn-success btn-s\"(click)=\"uploader.uploadAll()\" [disabled]=\"!uploader.getNotUploadedItems().length\" >\n        Upload Image before submitting the form\n  </button>\n      </div>\n      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Submit</button>   \n    </form>\n  </div>"
+module.exports = "<h1>ADD A BOOK FOR SALE</h1>\n<div class=\"container\">\n<input type=\"text\" class=\"form-control\" name=\"bookname\" placeholder=\"Book Name *\" required autofocus=\"\" #bookname />\n<input type=\"text\" class=\"form-control\" name=\"authorname\" placeholder=\"Author Name *\" required #authorname />      \n<input type=\"number\" class=\"form-control\" name=\"price\" placeholder=\"Price *\" required #price />\n<input type=\"number\" class=\"form-control\" name=\"condition\" placeholder=\"Condition *\" min=\"1\" max=\"4\" required #condition />\n<input type=\"file\" class=\"form-control\" (change)=\"onFileSelected($event)\">\n<button type=\"button\" (click)=\"onUpload(bookname,authorname,price,condition)\">upload</button>\n</div>\n\n\n\n\n\n\n\n\n\n\n\n\n<!-- <div class=\"wrapper\">\n    <form ngNoForm class=\"form-signin\" action=\"/api/listings\" method=\"POST\">       \n      <h2 class=\"form-signin-heading\">Add a book for sale</h2>\n      <input type=\"number\" name=\"seller\" class=\"form-control\" placeholder=\"User Id\" value=\"{{userId}}\" readonly>\n      <input type=\"text\" class=\"form-control\" name=\"bookname\" placeholder=\"Book Name\" required=\"\" autofocus=\"\" />\n      <input type=\"text\" class=\"form-control\" name=\"authorname\" placeholder=\"Author Name\" required=\"\"/>      \n      <input type=\"number\" class=\"form-control\" name=\"price\" placeholder=\"Price\" required=\"\"/>\n      <input type=\"number\" class=\"form-control\" name=\"condition\" placeholder=\"Condition\" min=\"1\" max=\"4\" required=\"\"/>\n     \n      <div *ngIf= \"imageUploaded\">\n        <input type=\"text\"  class=\"form-control\"  name=\"imageofitem\" value=\"{{imageURL}}\" readonly />\n      </div>\n     \n      <div *ngIf= \"!imageUploaded\">\n        <input type=\"file\"  class=\"form-control\"  name=\"photo\" ng2FileSelect [uploader]=\"uploader\" />\n        <button type=\"button\" class=\"btn btn-success btn-s\"(click)=\"uploader.uploadAll()\" [disabled]=\"!uploader.getNotUploadedItems().length\" >\n        Upload Image before submitting the form\n  </button>\n      </div>\n      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Submit</button>   \n    </form>\n  </div> -->\n\n<!-- \n  <div class=\"container\">\n      <h3 style=\"color: darkcyan;\">Upload Book</h3>\n      <form [formGroup]=\"myForm\" ngNoForm action=\"/api/listings\" method=\"POST\" enctype=\"multipart/form-data\">\n        <div class=\"row\">\n          <div class=\"input-field col s6\">\n            <input id=\"book_name\" formControlName=\"boo_name\" type=\"text\" name =\"book_name\" class=\"validate\">\n            <label class=\"active\" for=\"book_name\">Book Name</label>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"input-field col s6\">\n            <input id=\"author_name\" formControlName=\"autho_name\" type=\"text\" name =\"author_name\" class=\"validate\">\n            <label class=\"active\" for=\"author_name\">Author Name</label>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"input-field col s6\">\n            <input id=\"price\" formControlName=\"pric\" type=\"number\" name =\"price\" class=\"validate\">\n            <label class=\"active\" for=\"price\">Price</label>\n          </div>\n          <div class=\"input-field col s6\">\n            <select name=\"condition\" formControlName=\"conditio\" id=\"condition\" class=\"form-control\">\n              <option value=\"\" disabled selected>Choose the condition</option>\n              <option value=\"New\">New</option>\n              <option value=\"Almost New\">Almost New</option>\n              <option value=\"Slight Damage\">Slight Damage</option>\n              <option value=\"Worn\">Worn</option>\n            </select>\n            <label for=\"condition\">Condition</label>\n          </div>\n        </div>\n        \n        <div class=\"file-field input-field\">\n          <div class=\"btn\">\n            <span>Image</span>\n            <input name=\"myImage\" type=\"file\" (change)=\"onFileSelected($event)\" #image>\n          </div>\n          <div class=\"file-path-wrapper\">\n            <input class=\"file-path validate\" type=\"text\">\n          </div> \n        </div>\n        <button type=\"submit\" class=\"btn\" id=\"btnProductAdd\" >Submit</button>\n      </form>\n      <br>\n    </div> -->\n    "
 
 /***/ }),
 
@@ -57,8 +57,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddComponent", function() { return AddComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _books_provider_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../books-provider.service */ "./src/app/books-provider.service.ts");
-/* harmony import */ var ng2_file_upload_ng2_file_upload__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ng2-file-upload/ng2-file-upload */ "./node_modules/ng2-file-upload/ng2-file-upload.js");
-/* harmony import */ var ng2_file_upload_ng2_file_upload__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(ng2_file_upload_ng2_file_upload__WEBPACK_IMPORTED_MODULE_2__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -70,42 +68,46 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
-
 var AddComponent = /** @class */ (function () {
+    // fd = new FormData();
+    // headers = new Headers();
     function AddComponent(booksProviderService) {
         this.booksProviderService = booksProviderService;
         this.userId = 0;
-        this.imageUploaded = false;
-        this.imageURL = '';
-        this.uploader = new ng2_file_upload_ng2_file_upload__WEBPACK_IMPORTED_MODULE_2__["FileUploader"]({ url: "/api/upload", itemAlias: 'photo' });
+        this.isFileSelected = false;
+        // myForm: FormGroup ;
+        this.selectedFile = null;
         this.getUserData();
     }
     AddComponent.prototype.getUserData = function () {
         var _this = this;
         if (this.userId == 0)
             this.booksProviderService.getUser().subscribe(function (res) {
-                console.log("getRequest in add ", res);
+                console.log("getRequest in add image", res);
                 if (res["statusCode"] != 400) {
                     _this.userId = res["id"];
                 }
             });
     };
     AddComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.uploader.onAfterAddingFile = function (file) { file.withCredentials = false; };
-        this.uploader.onCompleteItem = function (item, response, status, headers) {
-            // console.log(JSON.parse(response));
-            if (JSON.parse(response)["success"]) {
-                alert('File uploaded successfully');
-                _this.imageUploaded = true;
-                _this.imageURL = "/uploads/" + JSON.parse(response)["info"];
-            }
-            else {
-                alert('File upload failed');
-                _this.imageUploaded = false;
-                _this.imageURL = '';
-            }
-        };
+    };
+    AddComponent.prototype.onFileSelected = function (event) {
+        // console.log(event)
+        this.isFileSelected = true;
+        this.selectedFile = event.target.files[0];
+    };
+    AddComponent.prototype.onUpload = function (bookname, authorname, price, condition) {
+        var fd = new FormData();
+        if (this.isFileSelected)
+            fd.append('bookimage', this.selectedFile, this.selectedFile.name);
+        fd.append('seller', this.userId.toString());
+        fd.append('bookname', bookname.value);
+        fd.append('authorname', authorname.value);
+        fd.append('price', price.value);
+        fd.append('condition', condition.value);
+        this.booksProviderService.addbook(fd).subscribe(function (res) {
+            alert(res["message"]);
+        });
     };
     AddComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -218,7 +220,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-// import { FormsModule } from '@angular/forms';
+// import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -515,6 +517,10 @@ var BooksProviderService = /** @class */ (function () {
     };
     BooksProviderService.prototype.search = function (name) {
         return this.http.get('/api/listings/search/' + name);
+    };
+    BooksProviderService.prototype.addbook = function (obj) {
+        console.log("service", obj);
+        return this.http.post('/api/listings', obj);
     };
     BooksProviderService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -965,7 +971,7 @@ var MessagesComponent = /** @class */ (function () {
             _this.booksProviderService.getMessages(res["id"]).subscribe(function (res) {
                 console.log(res);
                 _this.messages = res;
-                length = _this.messages.length;
+                _this.length = _this.messages.length;
                 // for(let i=0;i< this.wishlist.length;i++){
                 //   this.booksProviderService.getParticularBook(this.wishlist[i].bookid).subscribe(res => {
                 //     console.log(res);
@@ -1008,7 +1014,7 @@ module.exports = "Colors\n/*Fonts*/\nbody {\n    background-color: #ffbba8;\n  }
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"wrapper\">\n  <div class=\"shapes\">\n    <div class=\"row\"></div>\n    <div class=\"column\">\n      <div class=\"column__1\">\n        <div class=\"polygen\"></div>\n        <div class=\"circle\"></div>\n        <div class=\"traingle\"></div>\n        <div class=\"italicline\"></div>\n        <div class=\"sm-circle\"></div>\n        <div class=\"xs-circle\"></div>\n      </div>\n      <div class=\"column__2\">\n        <div class=\"line\"></div>\n        <div class=\"square\"></div>\n        <div class=\"half-circle\"></div>\n        <div class=\"sm-square\"></div>\n        <div class=\"rectangle\"></div>\n        <div class=\"star\"></div>\n      </div>\n      <div class=\"column__3\">\n        <div class=\"six-circle\"></div>\n        <div class=\"pencil\"></div>\n      </div>\n    </div>\n  </div>\n  <div class=\"form-content\">\n    <div class=\"form-content__header\">\n      <h2>PROFILE PAGE</h2>\n    </div>\n    <form  action=\"/profile\" method=\"POST\">\n      <label for=\"id\">ID</label> \n      <div class=\"form-row\">\n          <input type=\"number\" name=\"id\" value={{userId}} readonly >\n      </div>\n      <label for=\"email\">EMAIL</label> \n      <div class=\"form-row\">\n          <input type=\"email\" name=\"email\" value={{user.email}} >\n      </div>\n      <label for=\"username\">USERNAME</label>\n      <div class=\"form-row\">\n          <input type=\"text\" name=\"username\" placeholder=\"USER NAME\" value={{user.username}} >\n      </div>\n      <label for=\"firstname\">FIRST NAME</label>\n      <div class=\"form-row\">\n          <input type=\"text\" name=\"firstname\" placeholder=\"FIRST NAME\" value={{user.firstname}}>\n      </div>\n      <label for=\"lastname\">LAST NAME</label>\n      <div class=\"form-row\">\n          <input type=\"text\" name=\"lastname\" placeholder=\"LAST NAME\" value={{user.lastname}}>\n      </div>\n      <label for=\"about\">ABOUT</label>\n      <div class=\"form-row\">\n          <input type=\"textarea\" name=\"about\" placeholder=\"ABOUT YOURSELF\" value={{user.about}}>\n      </div>\n      <label for=\"mobileNo\">MOBILE NO</label>\n      <div class=\"form-row\">\n          <input type=\"text\" name=\"mobileNo\" placeholder=\"MOBILE NO\" value={{user.mobileNo}}  >\n      </div>\n      <label for=\"college\">COLLEGE</label>\n      <div class=\"form-row\">\n          <input type=\" text\" name=\"college\" placeholder=\"COLLEGE\" value={{user.college}} >\n      </div>\n      <label for=\"address\">ADDRESS</label>\n      <div class=\"form-row\">\n          <input type=\" text\" name=\"address\" placeholder=\"ADDRESS\" value={{user.address}} >\n      </div>\n      <div class=\"form-row\">\n        <button class=\"btn\" > Submit</button>\n      </div>\n    </form>\n    <div class=\"form-content__footer\">\n      <!-- <p><a href=\"#\">Forget passowrd !</a></p> -->\n    </div>\n  </div>\n</div>\n"
+module.exports = "\n<div class=\"wrapper\">\n  <div class=\"shapes\">\n    <div class=\"row\"></div>\n    <div class=\"column\">\n      <div class=\"column__1\">\n        <div class=\"polygen\"></div>\n        <div class=\"circle\"></div>\n        <div class=\"traingle\"></div>\n        <div class=\"italicline\"></div>\n        <div class=\"sm-circle\"></div>\n        <div class=\"xs-circle\"></div>\n      </div>\n      <div class=\"column__2\">\n        <div class=\"line\"></div>\n        <div class=\"square\"></div>\n        <div class=\"half-circle\"></div>\n        <div class=\"sm-square\"></div>\n        <div class=\"rectangle\"></div>\n        <div class=\"star\"></div>\n      </div>\n      <div class=\"column__3\">\n        <div class=\"six-circle\"></div>\n        <div class=\"pencil\"></div>\n      </div>\n    </div>\n  </div>\n  <div class=\"form-content\">\n    <div class=\"form-content__header\">\n      <h2>PROFILE PAGE</h2>\n    </div>\n    <form ngNoForm action=\"/profile\" method=\"POST\">\n      <label for=\"id\">ID</label> \n      <div class=\"form-row\">\n          <input type=\"number\" name=\"id\" value={{userId}} readonly >\n      </div>\n      <label for=\"email\">EMAIL</label> \n      <div class=\"form-row\">\n          <input type=\"email\" name=\"email\" value={{user.email}} >\n      </div>\n      <label for=\"username\">USERNAME</label>\n      <div class=\"form-row\">\n          <input type=\"text\" name=\"username\" placeholder=\"USER NAME\" value={{user.username}} >\n      </div>\n      <label for=\"firstname\">FIRST NAME</label>\n      <div class=\"form-row\">\n          <input type=\"text\" name=\"firstname\" placeholder=\"FIRST NAME\" value={{user.firstname}}>\n      </div>\n      <label for=\"lastname\">LAST NAME</label>\n      <div class=\"form-row\">\n          <input type=\"text\" name=\"lastname\" placeholder=\"LAST NAME\" value={{user.lastname}}>\n      </div>\n      <label for=\"about\">ABOUT</label>\n      <div class=\"form-row\">\n          <input type=\"textarea\" name=\"about\" placeholder=\"ABOUT YOURSELF\" value={{user.about}}>\n      </div>\n      <label for=\"mobileNo\">MOBILE NO</label>\n      <div class=\"form-row\">\n          <input type=\"text\" name=\"mobileNo\" placeholder=\"MOBILE NO\" value={{user.mobileNo}}  >\n      </div>\n      <label for=\"college\">COLLEGE</label>\n      <div class=\"form-row\">\n          <input type=\" text\" name=\"college\" placeholder=\"COLLEGE\" value={{user.college}} >\n      </div>\n      <label for=\"address\">ADDRESS</label>\n      <div class=\"form-row\">\n          <input type=\" text\" name=\"address\" placeholder=\"ADDRESS\" value={{user.address}} >\n      </div>\n      <div class=\"form-row\">\n        <button class=\"btn\" > Submit</button>\n      </div>\n    </form>\n    <div class=\"form-content__footer\">\n      <!-- <p><a href=\"#\">Forget passowrd !</a></p> -->\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1082,7 +1088,7 @@ module.exports = "Colors\n/*Fonts*/\nbody {\n    background-color: #ffbba8;\n  }
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\n    <div class=\"shapes\">\n      <div class=\"row\"></div>\n      <div class=\"column\">\n        <div class=\"column__1\">\n          <div class=\"polygen\"></div>\n          <div class=\"circle\"></div>\n          <div class=\"traingle\"></div>\n          <div class=\"italicline\"></div>\n          <div class=\"sm-circle\"></div>\n          <div class=\"xs-circle\"></div>\n        </div>\n        <div class=\"column__2\">\n          <div class=\"line\"></div>\n          <div class=\"square\"></div>\n          <div class=\"half-circle\"></div>\n          <div class=\"sm-square\"></div>\n          <div class=\"rectangle\"></div>\n          <div class=\"star\"></div>\n        </div>\n        <div class=\"column__3\">\n          <div class=\"six-circle\"></div>\n          <div class=\"pencil\"></div>\n        </div>\n      </div>\n    </div>\n    <div class=\"form-content\">\n      <div class=\"form-content__header\">\n        <h2>BOOKAPP</h2>\n      </div>\n      <form  action=\"/signin\" method=\"POST\">\n        <div class=\"form-row\">\n  \n          <input type=\"email\" name=\"email\" placeholder=\"E-mail\" required>\n        </div>\n        <div class=\"form-row\">\n          <input type=\"password\" name=\"password\" placeholder=\"Password\" required>\n        </div>\n        <div class=\"form-row\">\n          <button class=\"btn\" > Sign In</button>\n        </div>\n        <div class=\"form-row\">\n          <p>Don't have an account ? <a [routerLink]=\"['/signup']\" >Create one</a></p>\n        </div>\n      </form>\n      <div class=\"form-content__footer\">\n        <!-- <p><a href=\"#\">Forget passowrd !</a></p> -->\n      </div>\n    </div>\n  </div>\n"
+module.exports = "<div class=\"wrapper\">\n    <div class=\"shapes\">\n      <div class=\"row\"></div>\n      <div class=\"column\">\n        <div class=\"column__1\">\n          <div class=\"polygen\"></div>\n          <div class=\"circle\"></div>\n          <div class=\"traingle\"></div>\n          <div class=\"italicline\"></div>\n          <div class=\"sm-circle\"></div>\n          <div class=\"xs-circle\"></div>\n        </div>\n        <div class=\"column__2\">\n          <div class=\"line\"></div>\n          <div class=\"square\"></div>\n          <div class=\"half-circle\"></div>\n          <div class=\"sm-square\"></div>\n          <div class=\"rectangle\"></div>\n          <div class=\"star\"></div>\n        </div>\n        <div class=\"column__3\">\n          <div class=\"six-circle\"></div>\n          <div class=\"pencil\"></div>\n        </div>\n      </div>\n    </div>\n    <div class=\"form-content\">\n      <div class=\"form-content__header\">\n        <h2>BOOKAPP</h2>\n      </div>\n      <form ngNoForm  action=\"/signin\" method=\"POST\">\n        <div class=\"form-row\">\n  \n          <input type=\"email\" name=\"email\" placeholder=\"E-mail\" required>\n        </div>\n        <div class=\"form-row\">\n          <input type=\"password\" name=\"password\" placeholder=\"Password\" required>\n        </div>\n        <div class=\"form-row\">\n          <button class=\"btn\" > Sign In</button>\n        </div>\n        <div class=\"form-row\">\n          <p>Don't have an account ? <a [routerLink]=\"['/signup']\" >Create one</a></p>\n        </div>\n      </form>\n      <div class=\"form-content__footer\">\n        <!-- <p><a href=\"#\">Forget passowrd !</a></p> -->\n      </div>\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -1150,7 +1156,7 @@ module.exports = "Colors\n/*Fonts*/\nbody {\n    background-color: #ffbba8;\n  }
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\n    <div class=\"shapes\">\n      <div class=\"row\"></div>\n      <div class=\"column\">\n        <div class=\"column__1\">\n          <div class=\"polygen\"></div>\n          <div class=\"circle\"></div>\n          <div class=\"traingle\"></div>\n          <div class=\"italicline\"></div>\n          <div class=\"sm-circle\"></div>\n          <div class=\"xs-circle\"></div>\n        </div>\n        <div class=\"column__2\">\n          <div class=\"line\"></div>\n          <div class=\"square\"></div>\n          <div class=\"half-circle\"></div>\n          <div class=\"sm-square\"></div>\n          <div class=\"rectangle\"></div>\n          <div class=\"star\"></div>\n        </div>\n        <div class=\"column__3\">\n          <div class=\"six-circle\"></div>\n          <div class=\"pencil\"></div>\n        </div>\n      </div>\n    </div>\n    <div class=\"form-content\">\n      <div class=\"form-content__header\">\n        <h2>BOOKAPP</h2>\n      </div>\n      <form  action=\"/signup\" method=\"POST\">\n        <div class=\"form-row\">\n            <input type=\"email\" name=\"email\" placeholder=\"E-MAIL\" required>\n        </div>\n        <div class=\"form-row\">\n            <input type=\"text\" name=\"username\" placeholder=\"USER NAME\" required>\n        </div>\n        <div class=\"form-row\">\n            <input type=\"text\" name=\"firstname\" placeholder=\"FIRST NAME\">\n        </div>\n        <div class=\"form-row\">\n            <input type=\"text\" name=\"lastname\" placeholder=\"LAST NAME\">\n        </div>\n        <div class=\"form-row\">\n            <input type=\"textarea\" name=\"about\" placeholder=\"ABOUT YOURSELF\">\n        </div>\n        <div class=\"form-row\">\n            <input type=\"text\" name=\"text\" placeholder=\"MOBILE NO\" required>\n        </div>\n        <div class=\"form-row\">\n            <input type=\" text\" name=\"college\" placeholder=\"COLLEGE\" required>\n        </div>\n        <div class=\"form-row\">\n            <input type=\" text\" name=\"address\" placeholder=\"ADDRESS\" required>\n        </div>\n        <div class=\"form-row\">\n          <input type=\"password\" name=\"password\" placeholder=\"Password\" required>\n        </div>\n        <div class=\"form-row\">\n          <button class=\"btn\" > Sign UP</button>\n        </div>\n        <div class=\"form-row\">\n          <p>Have an account ? <a [routerLink]=\"['/signin']\"  >Sign IN</a></p>\n        </div>\n      </form>\n      <div class=\"form-content__footer\">\n        <!-- <p><a href=\"#\">Forget passowrd !</a></p> -->\n      </div>\n    </div>\n  </div>\n"
+module.exports = "<div class=\"wrapper\">\n    <div class=\"shapes\">\n      <div class=\"row\"></div>\n      <div class=\"column\">\n        <div class=\"column__1\">\n          <div class=\"polygen\"></div>\n          <div class=\"circle\"></div>\n          <div class=\"traingle\"></div>\n          <div class=\"italicline\"></div>\n          <div class=\"sm-circle\"></div>\n          <div class=\"xs-circle\"></div>\n        </div>\n        <div class=\"column__2\">\n          <div class=\"line\"></div>\n          <div class=\"square\"></div>\n          <div class=\"half-circle\"></div>\n          <div class=\"sm-square\"></div>\n          <div class=\"rectangle\"></div>\n          <div class=\"star\"></div>\n        </div>\n        <div class=\"column__3\">\n          <div class=\"six-circle\"></div>\n          <div class=\"pencil\"></div>\n        </div>\n      </div>\n    </div>\n    <div class=\"form-content\">\n      <div class=\"form-content__header\">\n        <h2>BOOKAPP</h2>\n      </div>\n      <form ngNoForm action=\"/signup\" method=\"POST\">\n        <div class=\"form-row\">\n            <input type=\"email\" name=\"email\" placeholder=\"E-MAIL\" required>\n        </div>\n        <div class=\"form-row\">\n            <input type=\"text\" name=\"username\" placeholder=\"USER NAME\" required>\n        </div>\n        <div class=\"form-row\">\n            <input type=\"text\" name=\"firstname\" placeholder=\"FIRST NAME\">\n        </div>\n        <div class=\"form-row\">\n            <input type=\"text\" name=\"lastname\" placeholder=\"LAST NAME\">\n        </div>\n        <div class=\"form-row\">\n            <input type=\"textarea\" name=\"about\" placeholder=\"ABOUT YOURSELF\">\n        </div>\n        <div class=\"form-row\">\n            <input type=\"text\" name=\"text\" placeholder=\"MOBILE NO\" required>\n        </div>\n        <div class=\"form-row\">\n            <input type=\" text\" name=\"college\" placeholder=\"COLLEGE\" required>\n        </div>\n        <div class=\"form-row\">\n            <input type=\" text\" name=\"address\" placeholder=\"ADDRESS\" required>\n        </div>\n        <div class=\"form-row\">\n          <input type=\"password\" name=\"password\" placeholder=\"Password\" required>\n        </div>\n        <div class=\"form-row\">\n          <button class=\"btn\" > Sign UP</button>\n        </div>\n        <div class=\"form-row\">\n          <p>Have an account ? <a [routerLink]=\"['/signin']\"  >Sign IN</a></p>\n        </div>\n      </form>\n      <div class=\"form-content__footer\">\n        <!-- <p><a href=\"#\">Forget passowrd !</a></p> -->\n      </div>\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -1246,7 +1252,7 @@ module.exports = ".contain{\n    display: flex;\n    width: 700px;\n    margin: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class = \"contain\">\n<div *ngFor=\"let book of booksArray\">\n  <div class=\"card\" style=\"width: 18rem;\">\n    <img class=\"card-img-top\" src= {{book?.imageofitem}} alt=\"Card image cap\">\n    <div class=\"card-body\">\n      <p class=\"card-title\"><span>BOOK NAME:</span>{{book?.bookname}}</p>\n      <p class=\"card-text\"><span>AUTHOR:</span>{{book?.authorname}}</p>\n      <p class=\"card-text\"><span>PRICE:</span>{{book?.price}}</p>\n      <p class=\"card-text\"><span>QUANTITY:</span>{{book?.quantity}}</p>\n      <p class=\"card-text\"><span>CONDITION:</span>{{book?.Condition}}</p>\n      <p class=\"card-text\"><span>SELLER ID:</span>{{book?.seller}}</p>\n      <!-- <button class=\"btn btn-primary btn-lg btn-block\" (click) = \"delete(book)\">DELETE WISH</button> -->\n    </div>\n  </div>\n</div>\n<h1 *ngIf=\"booksArray\"> WISHLIST IS EMPTY</h1>\n</div>"
+module.exports = "<div class = \"contain\">\n<div *ngFor=\"let book of booksArray\">\n  <div class=\"card\" style=\"width: 18rem;\">\n    <img class=\"card-img-top\" src= {{book?.imageofitem}} alt=\"Card image cap\">\n    <div class=\"card-body\">\n      <p class=\"card-title\"><span>BOOK NAME:</span>{{book?.bookname}}</p>\n      <p class=\"card-text\"><span>AUTHOR:</span>{{book?.authorname}}</p>\n      <p class=\"card-text\"><span>PRICE:</span>{{book?.price}}</p>\n      <p class=\"card-text\"><span>QUANTITY:</span>{{book?.quantity}}</p>\n      <p class=\"card-text\"><span>CONDITION:</span>{{book?.Condition}}</p>\n      <p class=\"card-text\"><span>SELLER ID:</span>{{book?.seller}}</p>\n      <!-- <button class=\"btn btn-primary btn-lg btn-block\" (click) = \"delete(book)\">DELETE WISH</button> -->\n    </div>\n  </div>\n</div>\n<h1 *ngIf=\"length==0\"> WISHLIST IS EMPTY</h1>\n</div>"
 
 /***/ }),
 
@@ -1281,6 +1287,7 @@ var WishlistComponent = /** @class */ (function () {
         this.route = route;
         this.booksProviderService = booksProviderService;
         this.booksArray = [];
+        this.length = 0;
     }
     WishlistComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1293,6 +1300,8 @@ var WishlistComponent = /** @class */ (function () {
                     _this.booksProviderService.getParticularBook(_this.wishlist[i].bookid).subscribe(function (res) {
                         console.log(res);
                         _this.booksArray.push(res);
+                        _this.length = _this.booksArray.length;
+                        // console.log("wishlist",this.length);
                     });
                 }
             });

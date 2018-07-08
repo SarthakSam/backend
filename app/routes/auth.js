@@ -110,7 +110,7 @@ app.post('/profile',(req,res) => {
           res.redirect('/');
         }
         else{
-            res.redirect('/');
+            res.redirect('/ ');
         }
     })
 });

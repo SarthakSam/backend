@@ -41,9 +41,8 @@
  const path = require('path');
  const multer = require('multer');
  const fs = require('fs');
- const DIR = '/home/sarthak/finalProject/authentication/uploads';
- const bodyParser = require('body-parser')
-
+ const DIR = '../../../uploads';
+ const bodyParser = require('body-parser');
  // const express = require('express');
  // const app = express();
  // const router = express.Router();
@@ -70,8 +69,8 @@ route.get('/',(req,res) => {
   res.send(DIR+'photo-1530607251432.jpg');
 })
 
-route.post('/',upload.single('photo'), function (req, res) {
-  // console.log(req.body);
+route.post('/photo',upload.single('photo'), function (req, res) {
+   console.log("IN UPLOAD",req.body);
   if (!req.file) {
       console.log("No file received");
       let obj = {
